@@ -1,0 +1,77 @@
+<!--
+ * Componente: LabsComponent
+ * Descripción: Se utiliza para mostrar y gestionar las prácticas de laboratorio.
+ *
+ -->
+<section class="section-testing">
+  <h1>Lab Tasks and Events</h1>
+
+  <section class="list-section">
+    <ul>
+      <h3>Primera Lista</h3>
+
+      <li *ngFor="let task of tasks">{{ task.name }}</li>
+    </ul>
+
+    <ul>
+      <h3>Segunda Lista</h3>
+
+      @for (task of tasks; track task.id) {
+      <li>{{ task.name }}</li>
+      } @empty {
+      <li>No hay tareas disponibles.</li>
+      }
+    </ul>
+  </section>
+
+  <hr />
+  <li>{{ taskNames }}</li>
+
+  <p>Hola soy {{ name() }}</p>
+  <img [src]="person.avatar" alt="" class="img-selfie" />
+  <p>Name: {{ person.name }}</p>
+  <p>Age: {{ person.age }}</p>
+
+  <input type="text" name="" id="" [value]="person.age" />
+
+  <button [disabled]="isBtnDisabled" class="btn-click" (click)="clickHandler()">
+    Click me
+  </button>
+  <button
+    [disabled]="isBtnDisabled"
+    class="btn-click"
+    (dblclick)="clickHandler()"
+  >
+    Double click
+  </button>
+  <p>Event change</p>
+  <input
+    type="number"
+    name="number-input"
+    id="5"
+    [value]="person.age"
+    (change)="changeHandler($event)"
+  />
+
+  <p>Write Something with change event:</p>
+  <input type="text" (change)="changeHandlerText($event)" />
+  <p>Value: {{ valueChange }}</p>
+
+  <p>Write Something with input event:</p>
+  <input type="text" (input)="changeHandlerTextInput($event)" />
+  <p>Value: {{ valueInput }}</p>
+
+  <p>Write Something with keydown event:</p>
+  <input type="text" (keydown)="keydownHandler($event)" />
+  <p>Value:{{ keyPress }}</p>
+
+  <p>Listen how we press a specific key, please pres shift + t</p>
+  <input type="text" (keydown.shift.t)="clickHandler()" />
+
+  <hr />
+  <h2>Signals</h2>
+  <input type="text" [value]="name()" (keydown)="changeNameHandler($event)" />
+  <p>Hola soy {{ name() }}</p>
+  <p>Hola soy {{ name() }}</p>
+
+</section>

@@ -1,0 +1,36 @@
+.img-selfie{
+    width: 200px;
+    height: auto;
+    object-fit: cover;
+    border-radius: 50%;
+}
+
+.section-testing{
+    display: flex;
+    flex-direction: column;
+    gap: 5px;
+    margin-bottom: 250px;
+    width: 500px;
+    margin: 0 auto;
+    padding-bottom: 250px;
+}
+
+.btn-click{
+    padding: 10px 20px;
+    background-color: #0ca080;
+    border: 1px solid #111111;
+    border-radius: 5px;
+    cursor: pointer;
+    color: #ffffff;
+    width: 150px;
+}
+
+
+.btn-click:disabled{
+    background-color: #cccccc;
+    cursor: not-allowed;
+}
+
+.list-section{
+    display: flex;
+}
