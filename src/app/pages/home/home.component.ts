@@ -16,4 +16,11 @@ export class HomeComponent {
     "Task 3",
   ]);
 
+  changeHandler(event: Event) {
+    const input = event.target as HTMLInputElement;
+    const newTasks = input.value;
+    this.tasks.update((tasks) => [...tasks, newTasks]);
+    input.value = "";
+  }
+
 }
