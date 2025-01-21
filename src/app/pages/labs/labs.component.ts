@@ -18,6 +18,14 @@ export class LabsComponent {
     return this.tasks.map(task => task.name).join(', ');
   }
 
+  nameList = signal(
+    [
+      'Aye',
+      'Matias',
+      'Gabo',
+
+    ])
+
   name = signal('Aye');
 
   isBtnDisabled = false;
@@ -34,34 +42,34 @@ export class LabsComponent {
     alert("hellloooooo")
   }
 
-  changeHandler(event: Event){
+  changeHandler(event: Event) {
     console.log(event)
   }
-  
+
   valueChange = "";
 
-  changeHandlerText(event: Event){
+  changeHandlerText(event: Event) {
     const elementInput = event.target as HTMLInputElement;
     this.valueChange = elementInput.value;
   }
 
   valueInput = "";
 
-  changeHandlerTextInput(event: Event){
+  changeHandlerTextInput(event: Event) {
     const elementInput = event.target as HTMLInputElement;
     this.valueInput = elementInput.value;
   }
 
   keyPress = ""
-  keydownHandler(event: KeyboardEvent){
+  keydownHandler(event: KeyboardEvent) {
     const input = event.target as HTMLInputElement;
     this.keyPress = input.value;
     console.log(input.value)
   }
 
-  changeNameHandler(event: KeyboardEvent){
+  changeNameHandler(event: KeyboardEvent) {
     const valueInput = event.target as HTMLInputElement;
     const newValue = valueInput.value;
-    this.name.set(newValue) 
+    this.name.set(newValue)
   }
 }

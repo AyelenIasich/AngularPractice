@@ -9,21 +9,25 @@
   <section class="list-section">
     <ul>
       <h3>Primera Lista</h3>
-
       <li *ngFor="let task of tasks">{{ task.name }}</li>
     </ul>
 
     <ul>
       <h3>Segunda Lista</h3>
-
       @for (task of tasks; track task.id) {
       <li>{{ task.name }}</li>
       } @empty {
       <li>No hay tareas disponibles.</li>
       }
     </ul>
-  </section>
 
+ 
+  </section>
+  <ul>
+    <h3>Lista de nombres</h3>
+    <li *ngFor="let name of nameList(); index as i ">{{i}} {{name}}</li>
+    <p>Total de nombres: {{nameList().length}}</p>
+  </ul>
   <hr />
   <li>{{ taskNames }}</li>
 
