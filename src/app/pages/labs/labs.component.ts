@@ -31,12 +31,12 @@ export class LabsComponent {
   isBtnDisabled = false;
   selfiePhoto = "https://github.com/AyelenIasich.png"
 
-  person = {
+  person = signal({
     name: "aye",
     age: 32,
     email: "iasichayelen.com",
     avatar: "https://github.com/AyelenIasich.png"
-  }
+  })
 
   clickHandler() {
     alert("hellloooooo")
@@ -44,6 +44,12 @@ export class LabsComponent {
 
   changeHandler(event: Event) {
     console.log(event)
+  }
+
+  changeHandlerAge(event: Event) {
+    const elementInput = event.target as HTMLInputElement;
+    this.valueChange = elementInput.value;
+    this.person.update((person) => ({ ...person, age: parseInt(elementInput.value) }))
   }
 
   valueChange = "";
@@ -72,4 +78,10 @@ export class LabsComponent {
     const newValue = valueInput.value;
     this.name.set(newValue)
   }
+
+  changeHandlerName(event: Event) {
+    const input = event.target as HTMLInputElement;
+    this.person.update((person) => ({ ...person, name: input.value }))
+  }
+
 }

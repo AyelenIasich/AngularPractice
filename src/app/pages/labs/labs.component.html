@@ -32,11 +32,11 @@
   <li>{{ taskNames }}</li>
 
   <p>Hola soy {{ name() }}</p>
-  <img [src]="person.avatar" alt="" class="img-selfie" />
-  <p>Name: {{ person.name }}</p>
-  <p>Age: {{ person.age }}</p>
+  <img [src]="person().avatar" alt="" class="img-selfie" />
+  <p>Name: {{ person().name }}</p>
+  <p>Age: {{ person().age }}</p>
 
-  <input type="text" name="" id="" [value]="person.age" />
+  <input type="text" name="" id="" [value]="person().age" />
 
   <button [disabled]="isBtnDisabled" class="btn-click" (click)="clickHandler()">
     Click me
@@ -53,7 +53,7 @@
     type="number"
     name="number-input"
     id="5"
-    [value]="person.age"
+    [value]="person().age"
     (change)="changeHandler($event)"
   />
 
@@ -76,6 +76,37 @@
   <h2>Signals</h2>
   <input type="text" [value]="name()" (keydown)="changeNameHandler($event)" />
   <p>Hola soy {{ name() }}</p>
-  <p>Hola soy {{ name() }}</p>
 
+  <hr>
+  <div *ngIf="1 !== 1">
+    My content 
+  </div>
+  <div *ngIf="name() === 'Aye'">
+    Show this section because the name is {{ name() }}
+  </div>
+  <label for="age-input">Change Person Age</label>
+  <input
+    type="number"
+    name="age-input"
+    [value]="person().age"
+    (change)="changeHandlerAge($event)"
+  />
+
+  <div *ngIf="person().name === 'aye' && person().age >= 30; else elseBlock">
+    Show this section because these person is aye and older than 30 
+  </div>
+  <ng-template #elseBlock>
+    I am another person and younger than 30 years old
+  </ng-template>
+  <hr>
+
+  <h3>ngSwitch</h3>
+  <input type="text" [value]="person().name" (change)="changeHandlerName($event)" />
+  <div [ngSwitch]="person().name">
+    <p *ngSwitchCase="'aye'">Yo soy aye</p>
+    <p *ngSwitchCase="'julian'">Yo soy julian</p>
+    <p *ngSwitchCase="'ana'">Yo soy ana</p>
+    <p *ngSwitchCase="'valentina'">Yo soy ana</p>
+    <p *ngSwitchDefault>Yo no soy nadie</p>
+  </div>
 </section>

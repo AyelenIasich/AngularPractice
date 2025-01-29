@@ -60,7 +60,7 @@
     <footer class="footer">
       <!-- This should be `0 items left` by default -->
       <span class="todo-count"
-        ><strong>{{ tasks().length }}</strong> items</span
+        ><strong>{{ tasks().length }}</strong> {{ tasks().length === 1 ? 'item' : 'items'}}</span
       >
       <!-- Remove this if you don't implement routing -->
       <ul class="filters">
