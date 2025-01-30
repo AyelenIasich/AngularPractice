@@ -109,4 +109,11 @@
     <p *ngSwitchCase="'valentina'">Yo soy ana</p>
     <p *ngSwitchDefault>Yo no soy nadie</p>
   </div>
+
+  <hr>
+  <h3>Input Control with react form module </h3>
+  <input type="color" [formControl]="colorCtrl">
+  <p>Color: {{colorCtrl.value}}</p>
+
+
 </section>
