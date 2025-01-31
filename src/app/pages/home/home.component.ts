@@ -1,7 +1,9 @@
 import { CommonModule } from '@angular/common';
 import { Component, computed, signal } from '@angular/core';
-import { Task } from '../../models/task.model';
 import { FormControl, ReactiveFormsModule, Validators } from '@angular/forms';
+import { TaskFilterEnum } from '../../enums/task-filter.enum';
+import { Task } from '../../models/task.model';
+
 @Component({
   selector: 'app-home',
   standalone: true,
@@ -19,7 +21,9 @@ export class HomeComponent {
 
   newTaskCtrl = new FormControl('', { nonNullable: true, validators: [Validators.required, Validators.pattern(/\S+/)] });
 
-  filter = signal<'all' | 'pending' | 'completed'>('all');
+  filter = signal<TaskFilterEnum>(TaskFilterEnum.ALL);
+
+  taskFilterEnum = TaskFilterEnum;
 
   tasksByFilter = computed(() => {
     const filter = this.filter();
@@ -63,7 +67,7 @@ export class HomeComponent {
     this.tasks.update((tasks) => tasks.map((task, i) => i === index ? { ...task, title: input.value, editing: false } : task));
   }
 
-  changeFilter(filter: 'all' | 'pending' | 'completed') {
+  changeFilter(filter: TaskFilterEnum) {
     this.filter.set(filter);
   }
 }
