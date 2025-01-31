@@ -20,13 +20,11 @@
       <li>No hay tareas disponibles.</li>
       }
     </ul>
-
- 
   </section>
   <ul>
     <h3>Lista de nombres</h3>
-    <li *ngFor="let name of nameList(); index as i ">{{i}} {{name}}</li>
-    <p>Total de nombres: {{nameList().length}}</p>
+    <li *ngFor="let name of nameList(); index as i">{{ i }} {{ name }}</li>
+    <p>Total de nombres: {{ nameList().length }}</p>
   </ul>
   <hr />
   <li>{{ taskNames }}</li>
@@ -77,10 +75,8 @@
   <input type="text" [value]="name()" (keydown)="changeNameHandler($event)" />
   <p>Hola soy {{ name() }}</p>
 
-  <hr>
-  <div *ngIf="1 !== 1">
-    My content 
-  </div>
+  <hr />
+  <div *ngIf="1 !== 1">My content</div>
   <div *ngIf="name() === 'Aye'">
     Show this section because the name is {{ name() }}
   </div>
@@ -93,15 +89,19 @@
   />
 
   <div *ngIf="person().name === 'aye' && person().age >= 30; else elseBlock">
-    Show this section because these person is aye and older than 30 
+    Show this section because these person is aye and older than 30
   </div>
   <ng-template #elseBlock>
     I am another person and younger than 30 years old
   </ng-template>
-  <hr>
+  <hr />
 
   <h3>ngSwitch</h3>
-  <input type="text" [value]="person().name" (change)="changeHandlerName($event)" />
+  <input
+    type="text"
+    [value]="person().name"
+    (change)="changeHandlerName($event)"
+  />
   <div [ngSwitch]="person().name">
     <p *ngSwitchCase="'aye'">Yo soy aye</p>
     <p *ngSwitchCase="'julian'">Yo soy julian</p>
@@ -110,10 +110,24 @@
     <p *ngSwitchDefault>Yo no soy nadie</p>
   </div>
 
+  <hr />
+  <h3>Input Control with react form module</h3>
+  <input type="color" [formControl]="colorCtrl" />
+  <p>Color: {{ colorCtrl.value }}</p>
+
+  <hr />
+  <svg>
+    <g>
+      <rect x="0" y="0" height="100" width="100" [attr.fill]="colorCtrl.value" />
+    </g>
+  </svg>
+
   <hr>
-  <h3>Input Control with react form module </h3>
-  <input type="color" [formControl]="colorCtrl">
-  <p>Color: {{colorCtrl.value}}</p>
+  <input type="number" [formControl]="widthControl" />
+  <span class="box" [style.width.px]="widthControl.value"></span>
 
-
+  <hr>
+  <input type="text" [formControl]="nameControl" />
+  <span class="message-error" [class.show]="nameControl.invalid && nameControl.touched">Nombre Invalido</span>
+  <input type="text">
 </section>
