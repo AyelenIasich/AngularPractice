@@ -38,7 +38,7 @@
       </ul>
     </section>
     <!-- This footer should be hidden by default and shown when there are todos -->
-    <footer class="footer">
+    <footer class="footer" *ngIf="tasks().length > 0">
       <!-- This should be `0 items left` by default -->
       <span class="todo-count"
         ><strong>{{ tasksByFilter().length }}</strong>
@@ -47,13 +47,13 @@
       <!-- Remove this if you don't implement routing -->
       <ul class="filters">
         <li>
-          <a (click)="changeFilter(taskFilterEnum.ALL)" class="selected">All</a>
+          <a (click)="changeFilter(taskFilterEnum.ALL)" [class.selected]="filter() === taskFilterEnum.ALL">All</a>
         </li>
         <li>
-          <a (click)="changeFilter(taskFilterEnum.PENDING)">Pending</a>
+          <a (click)="changeFilter(taskFilterEnum.PENDING)" [class.selected]="filter() === taskFilterEnum.PENDING">Pending</a>
         </li>
         <li>
-          <a (click)="changeFilter(taskFilterEnum.COMPLETED)">Completed</a>
+          <a (click)="changeFilter(taskFilterEnum.COMPLETED)" [class.selected]="filter() === taskFilterEnum.COMPLETED">Completed</a>
         </li>
       </ul>
       <!-- Hidden if no completed items are left ↓ -->

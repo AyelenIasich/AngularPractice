@@ -1,5 +1,5 @@
 import { CommonModule } from '@angular/common';
-import { Component, computed, signal } from '@angular/core';
+import { Component, computed, effect, inject, Injector, signal } from '@angular/core';
 import { FormControl, ReactiveFormsModule, Validators } from '@angular/forms';
 import { TaskFilterEnum } from '../../enums/task-filter.enum';
 import { Task } from '../../models/task.model';
@@ -13,17 +13,31 @@ import { Task } from '../../models/task.model';
 })
 export class HomeComponent {
 
-  tasks = signal<Task[]>([
-    { id: crypto.randomUUID(), title: "Learn React", completed: true },
-    { id: crypto.randomUUID(), title: "Learn Angular", completed: false },
-    { id: crypto.randomUUID(), title: "Learn Vue", completed: false },
-  ]);
+  tasks = signal<Task[]>([]);
 
   newTaskCtrl = new FormControl('', { nonNullable: true, validators: [Validators.required, Validators.pattern(/\S+/)] });
 
   filter = signal<TaskFilterEnum>(TaskFilterEnum.ALL);
 
   taskFilterEnum = TaskFilterEnum;
+
+  injector = inject(Injector);
+
+  ngOnInit() {
+    const storage = localStorage.getItem('tasks');
+    if (storage) {
+      const tasks = (JSON.parse(storage));
+      this.tasks.set(tasks);
+    }
+    this.tractTask();
+  }
+
+  tractTask(){
+    effect(() => {
+      const tasks = this.tasks();
+      localStorage.setItem('tasks', JSON.stringify(tasks));
+    }, {injector: this.injector});
+  }
 
   tasksByFilter = computed(() => {
     const filter = this.filter();
