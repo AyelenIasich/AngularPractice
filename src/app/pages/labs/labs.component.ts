@@ -1,6 +1,7 @@
 import { CommonModule } from '@angular/common';
 import { Component, signal } from '@angular/core';
 import { FormControl, ReactiveFormsModule, Validators } from '@angular/forms';
+import { TaskSimple } from '../../models/task.model';
 @Component({
   selector: 'app-labs',
   standalone: true,
@@ -8,8 +9,10 @@ import { FormControl, ReactiveFormsModule, Validators } from '@angular/forms';
   templateUrl: './labs.component.html',
   styleUrl: './labs.component.css'
 })
+
 export class LabsComponent {
-  tasks = [
+
+  tasks: TaskSimple[] = [
     { id: 1, name: 'Aprender Angular' },
     { id: 2, name: 'Aprender Angular CLI' },
     { id: 3, name: 'Crear Proyecto' },]
@@ -91,8 +94,8 @@ export class LabsComponent {
       console.log(value)
     })
   }
-  
+
   widthControl = new FormControl(50, { nonNullable: true });
 
-  nameControl = new FormControl('', { nonNullable: true , validators: [Validators.required, Validators.minLength(3)] });
+  nameControl = new FormControl('', { nonNullable: true, validators: [Validators.required, Validators.minLength(3)] });
 }

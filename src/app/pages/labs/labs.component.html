@@ -1,19 +1,16 @@
-<!--
- * Componente: LabsComponent
- * Descripción: Se utiliza para mostrar y gestionar las prácticas de laboratorio.
- *
- -->
 <section class="section-testing">
   <h1>Lab Tasks and Events</h1>
 
   <section class="list-section">
     <ul>
-      <h3>Primera Lista</h3>
+      <!-- Old for syntax -->
+      <h3>Old For Syntax</h3>
       <li *ngFor="let task of tasks">{{ task.name }}</li>
     </ul>
 
+    <!-- New for syntax -->
     <ul>
-      <h3>Segunda Lista</h3>
+      <h3>New For Syntax</h3>
       @for (task of tasks; track task.id) {
       <li>{{ task.name }}</li>
       } @empty {
@@ -75,11 +72,17 @@
   <input type="text" [value]="name()" (keydown)="changeNameHandler($event)" />
   <p>Hola soy {{ name() }}</p>
 
+  <!-- ngIf old syntax -->
   <hr />
+  <h2>ngIf syntax</h2>
   <div *ngIf="1 !== 1">My content</div>
   <div *ngIf="name() === 'Aye'">
     Show this section because the name is {{ name() }}
   </div>
+
+  <!-- ngIf and else old syntax -->
+  <hr />
+  <h2>Ngif and elseblock syntax</h2>
   <label for="age-input">Change Person Age</label>
   <input
     type="number"
@@ -87,16 +90,23 @@
     [value]="person().age"
     (change)="changeHandlerAge($event)"
   />
-
   <div *ngIf="person().name === 'aye' && person().age >= 30; else elseBlock">
     Show this section because these person is aye and older than 30
   </div>
   <ng-template #elseBlock>
     I am another person and younger than 30 years old
   </ng-template>
-  <hr />
 
-  <h3>ngSwitch</h3>
+  <!-- new If and else syntax -->
+  <hr />
+  <h3>New if and else syntax</h3>
+  @if (person().name === 'aye' && person().age >= 30) {
+  <p>I am using the new syntax</p>
+  } @else { I am another person and younger than 30 years old }
+
+  <!-- ngSwitch old syntax -->
+  <hr />
+  <h3>Old ngSwitch syntax</h3>
   <input
     type="text"
     [value]="person().name"
@@ -111,6 +121,22 @@
   </div>
 
   <hr />
+  <!-- new switch syntax -->
+  <h3>New switch syntax</h3>
+  <div>
+    @switch (person().name) {
+    @case ('ana') {
+    <p>Yo soy ana</p>
+    } @case ('valentina') {
+    <p>Yo soy valentina</p>
+    } @default {
+    <p>Yo no soy nadie</p>
+    } 
+  }
+  </div>
+
+  <hr />
+  <!-- Reactive form  -->
   <h3>Input Control with react form module</h3>
   <input type="color" [formControl]="colorCtrl" />
   <p>Color: {{ colorCtrl.value }}</p>
@@ -118,16 +144,26 @@
   <hr />
   <svg>
     <g>
-      <rect x="0" y="0" height="100" width="100" [attr.fill]="colorCtrl.value" />
+      <rect
+        x="0"
+        y="0"
+        height="100"
+        width="100"
+        [attr.fill]="colorCtrl.value"
+      />
     </g>
   </svg>
 
-  <hr>
+  <hr />
   <input type="number" [formControl]="widthControl" />
   <span class="box" [style.width.px]="widthControl.value"></span>
 
-  <hr>
+  <hr />
   <input type="text" [formControl]="nameControl" />
-  <span class="message-error" [class.show]="nameControl.invalid && nameControl.touched">Nombre Invalido</span>
-  <input type="text">
+  <span
+    class="message-error"
+    [class.show]="nameControl.invalid && nameControl.touched"
+    >Nombre Invalido</span
+  >
+  <input type="text" />
 </section>

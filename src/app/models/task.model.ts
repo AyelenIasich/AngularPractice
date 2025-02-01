@@ -4,3 +4,8 @@ export interface Task {
     completed: boolean;
     editing?: boolean;
 }
+
+export interface TaskSimple {
+    id: number;
+    name: string;
+}
